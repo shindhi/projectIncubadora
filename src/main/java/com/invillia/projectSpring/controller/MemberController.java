@@ -2,7 +2,7 @@ package com.invillia.projectSpring.controller;
 
 import com.invillia.projectSpring.domain.Member;
 import com.invillia.projectSpring.exceptions.ActionNotPermitedException;
-import com.invillia.projectSpring.repository.MemberRepository;
+
 import com.invillia.projectSpring.service.MemberServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
