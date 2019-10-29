@@ -2,8 +2,6 @@ package com.invillia.projectSpring.controller;
 
 import com.invillia.projectSpring.domain.Team;
 import com.invillia.projectSpring.exceptions.ActionNotPermitedException;
-import com.invillia.projectSpring.exceptions.TeamNotFoundException;
-import com.invillia.projectSpring.repository.TeamRepository;
 import com.invillia.projectSpring.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,11 +26,11 @@ public class TeamController {
         this.teamService = teamService;
     }
 
-    @GetMapping("/")
-    public String index(Model model) {
-        model.addAttribute("team", teamService.findAll());
-        return "index";
-    }
+//    @GetMapping("/")
+//    public String index(Model model) {
+//        model.addAttribute("team", teamService.findAll());
+//        return "index";
+//    }
 
     @GetMapping("/signup")
     public String showSignUpform(Team team){
