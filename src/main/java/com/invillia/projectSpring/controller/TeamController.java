@@ -49,7 +49,7 @@ public class TeamController {
         model.addAttribute("teams", teamService.findAll());
         return "index";
     }
-    @GetMapping("/editteam{id}")
+    @GetMapping("/editteam/{id}")
     public String showUpdateForm(@PathVariable("id") Long id, Model model){
         Team team = teamService.findById(id);
         model.addAttribute("team", team);
