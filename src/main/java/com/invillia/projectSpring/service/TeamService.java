@@ -4,6 +4,7 @@ import com.invillia.projectSpring.domain.Team;
 import com.invillia.projectSpring.exceptions.ActionNotPermitedException;
 import com.invillia.projectSpring.exceptions.NotFoundException;
 import com.invillia.projectSpring.repository.TeamRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,7 +39,7 @@ public class TeamService {
 
     @Transactional
     public List<Team> findAll(){
-       return teamRepository.findAll();
+       return teamRepository.findAll(Sort.by("id"));
     }
 
     @Transactional
