@@ -1,7 +1,8 @@
 package com.invillia.projectSpring.service;
 
 import com.invillia.projectSpring.domain.Team;
-import com.invillia.projectSpring.exceptions.TeamNotFoundException;
+import com.invillia.projectSpring.exceptions.ActionNotPermitedException;
+import com.invillia.projectSpring.exceptions.NotFoundException;
 import com.invillia.projectSpring.repository.TeamRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,16 +30,20 @@ public class TeamService {
 
     }
 
+    @Transactional
     public void deleteById(Long id){
-        teamRepository.findById(id).orElseThrow(()-> new TeamNotFoundException(String.valueOf(id)));
+        teamRepository.findById(id).orElseThrow(()-> new NotFoundException(String.valueOf(id)));
         teamRepository.deleteById(id);
     }
 
+    @Transactional
     public List<Team> findAll(){
        return teamRepository.findAll();
     }
 
-    public void findById(Long id){
-        teamRepository.findById(id);
+    @Transactional
+    public Team findById(Long id){
+        return teamRepository.findById(id).orElseThrow(() -> new ActionNotPermitedException(String.valueOf(id)));
+
     }
 }

@@ -5,6 +5,7 @@ import com.invillia.projectSpring.exceptions.ActionNotPermitedException;
 import com.invillia.projectSpring.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +20,7 @@ import java.io.IOException;
 
 @Controller
 public class TeamController {
+
     private final TeamService teamService;
 
     @Autowired
@@ -26,19 +28,20 @@ public class TeamController {
         this.teamService = teamService;
     }
 
-//    @GetMapping("/")
-//    public String index(Model model) {
-//        model.addAttribute("team", teamService.findAll());
-//        return "index";
-//    }
 
-    @GetMapping("/signup")
+    @GetMapping("/team")
+    public String index(Model model){
+        model.addAttribute("teams", teamService.findAll());
+        return "index";
+    }
+
+    @GetMapping("/signupteam")
     public String showSignUpform(Team team){
         return "add-team";
     }
 
     @PostMapping("/addteam")
-    public String addTeam(@Valid Team team, BindingResult result, Model model){
+    public String addMember(@Valid Team team, BindingResult result, Model model){
         if(result.hasErrors()){
             return "add-team";
         }
@@ -46,8 +49,14 @@ public class TeamController {
         model.addAttribute("teams", teamService.findAll());
         return "index";
     }
+    @GetMapping("/editteam{id}")
+    public String showUpdateForm(@PathVariable("id") Long id, Model model){
+        Team team = teamService.findById(id);
+        model.addAttribute("team", team);
+        return "update-team";
+    }
 
-    @PostMapping("/update/{id}")
+    @PostMapping("/updateteam/{id}")
     public String updateTeam(@PathVariable("id") Long id, @Valid Team team, BindingResult result, Model model){
         if(result.hasErrors()){
             team.setId(id);
@@ -58,7 +67,7 @@ public class TeamController {
         return "index";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/deleteteam/{id}")
     public String deleteTeam(@PathVariable("id") Long id, Model model){
         teamService.findById(id);
         teamService.deleteById(id);
@@ -67,7 +76,7 @@ public class TeamController {
     }
 
     @ExceptionHandler(ActionNotPermitedException.class)
-    public void exceptionHandler(HttpServletResponse response, Exception e) throws IOException{
+    public void exceptionHandler(HttpServletResponse response, Exception e) throws IOException {
         response.sendError(HttpStatus.NOT_ACCEPTABLE.value(), e.getMessage());
     }
 }
