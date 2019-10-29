@@ -46,6 +46,12 @@ public class TeamController {
         model.addAttribute("teams", teamService.findAll());
         return "index";
     }
+    @GetMapping("/edit{id}")
+    public String showUpdateForm(@PathVariable("id") Long id, Model model){
+        Team team = teamService.findById(id);
+        model.addAttribute("team", team);
+        return "update-team";
+    }
 
     @PostMapping("/update/{id}")
     public String updateTeam(@PathVariable("id") Long id, @Valid Team team, BindingResult result, Model model){

@@ -1,6 +1,7 @@
 package com.invillia.projectSpring.service;
 
 import com.invillia.projectSpring.domain.Team;
+import com.invillia.projectSpring.exceptions.ActionNotPermitedException;
 import com.invillia.projectSpring.exceptions.TeamNotFoundException;
 import com.invillia.projectSpring.repository.TeamRepository;
 import org.springframework.stereotype.Service;
@@ -38,7 +39,8 @@ public class TeamService {
        return teamRepository.findAll();
     }
 
-    public void findById(Long id){
-        teamRepository.findById(id);
+    public Team findById(Long id){
+        return teamRepository.findById(id).orElseThrow(() -> new ActionNotPermitedException(String.valueOf(id)));
+
     }
 }
