@@ -24,10 +24,11 @@ public class MemberServices {
     }
 
     @Transactional
-    public void update(Long id, Member member){
-        memberRepository.findById(id);
-        memberRepository.save(member);
-
+    public void update(Member member){
+        Member persisted = memberRepository.findById(member.getId())
+                .orElseThrow(IllegalArgumentException::new);
+        persisted.setName(member.getName());
+        memberRepository.save(persisted);
     }
 
     @Transactional

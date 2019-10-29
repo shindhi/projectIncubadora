@@ -37,13 +37,13 @@ public class TeamController {
 
     @GetMapping("/signupteam")
     public String showSignUpform(Team team){
-        return "add-team";
+        return "Team/RegisterTeam";
     }
 
     @PostMapping("/addteam")
     public String addMember(@Valid Team team, BindingResult result, Model model){
         if(result.hasErrors()){
-            return "add-team";
+            return "Team/RegisterTeam";
         }
         teamService.insert(team);
         model.addAttribute("teams", teamService.findAll());
@@ -53,16 +53,16 @@ public class TeamController {
     public String showUpdateForm(@PathVariable("id") Long id, Model model){
         Team team = teamService.findById(id);
         model.addAttribute("team", team);
-        return "update-team";
+        return "Team/UpdateTeam";
     }
 
     @PostMapping("/updateteam/{id}")
     public String updateTeam(@PathVariable("id") Long id, @Valid Team team, BindingResult result, Model model){
         if(result.hasErrors()){
             team.setId(id);
-            return "update-team";
+            return "Team/UpdateTeam";
         }
-        teamService.update(id, team);
+        teamService.update(team);
         model.addAttribute("teams", teamService.findAll());
         return "index";
     }

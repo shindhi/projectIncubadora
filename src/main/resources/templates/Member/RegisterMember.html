@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta http-equiv="x-ua-compatible" content="chrome">
-    <title>Usuários</title>
+    <title>Members</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
@@ -17,17 +17,12 @@
 <div th:switch="${team}" class="container my-5">
     <div class="row">
         <div class="col-md-8">
-            <form action="#" th:action="@{/addteam}" th:object="${team}" method="post">
-                <input type="text" class="form-class" th:field="*{name}" />
-                <input type="submit" value="Cadastrar" />
+            <form action="#" th:action="@{/addmember}" th:object="${member}"  th:object="${team_id}" method="post">
+                <input type="text" class="form-class" th:field="*{name}" th:field="*{team_id}" />
+                <input type="submit" class="btn btn-success" value="Register">
             </form>
 
         </div>
-        <p class="my-5">
-            <a th:href="@{/signup}" class="btn btn-primary">
-                <i class="fas fa-team-plus"></i> Create
-            </a>
-        </p>
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

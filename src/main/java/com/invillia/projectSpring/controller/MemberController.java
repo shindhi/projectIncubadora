@@ -1,6 +1,7 @@
 package com.invillia.projectSpring.controller;
 
 import com.invillia.projectSpring.domain.Member;
+import com.invillia.projectSpring.domain.Team;
 import com.invillia.projectSpring.exceptions.ActionNotPermitedException;
 
 import com.invillia.projectSpring.service.MemberServices;
@@ -35,13 +36,13 @@ public class MemberController {
 
     @GetMapping("/signupmember")
     public String showSignUpform(Member member){
-        return "add-member";
+        return "Member/RegisterMember";
     }
 
     @PostMapping("/addmember")
     public String addMember(@Valid Member member, BindingResult result, Model model){
         if(result.hasErrors()){
-            return "add-member";
+            return "Member/RegisterMember";
         }
         memberServices.insert(member);
         model.addAttribute("members", memberServices.findAll());
@@ -51,16 +52,16 @@ public class MemberController {
     public String showUpdateForm(@PathVariable("id") Long id, Model model){
         Member member = memberServices.findById(id);
         model.addAttribute("member", member);
-        return "update-team";
+        return "Member/UpdateMember";
     }
 
     @PostMapping("/updatemember/{id}")
     public String updateMember(@PathVariable("id") Long id, @Valid Member member, BindingResult result, Model model){
         if(result.hasErrors()){
             member.setId(id);
-            return "update-team";
+            return "Member/UpdateMember";
         }
-        memberServices.update(id, member);
+        memberServices.update(member);
         model.addAttribute("teams", memberServices.findAll());
         return "index";
     }
