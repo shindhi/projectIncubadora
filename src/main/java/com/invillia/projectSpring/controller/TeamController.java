@@ -19,6 +19,7 @@ import java.io.IOException;
 
 @Controller
 public class TeamController {
+
     private final TeamService teamService;
 
     @Autowired
@@ -26,13 +27,13 @@ public class TeamController {
         this.teamService = teamService;
     }
 
-//    @GetMapping("/")
-//    public String index(Model model) {
-//        model.addAttribute("team", teamService.findAll());
-//        return "index";
-//    }
+    @GetMapping("/team")
+    public String index(Model model) {
+        model.addAttribute("team", teamService.findAll());
+        return "index";
+    }
 
-    @GetMapping("/signup")
+    @GetMapping("/signupteam")
     public String showSignUpform(Team team){
         return "add-team";
     }
@@ -46,14 +47,14 @@ public class TeamController {
         model.addAttribute("teams", teamService.findAll());
         return "index";
     }
-    @GetMapping("/edit{id}")
+    @GetMapping("/editteam{id}")
     public String showUpdateForm(@PathVariable("id") Long id, Model model){
         Team team = teamService.findById(id);
         model.addAttribute("team", team);
         return "update-team";
     }
 
-    @PostMapping("/update/{id}")
+    @PostMapping("/updateteam/{id}")
     public String updateTeam(@PathVariable("id") Long id, @Valid Team team, BindingResult result, Model model){
         if(result.hasErrors()){
             team.setId(id);
@@ -64,7 +65,7 @@ public class TeamController {
         return "index";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/deleteteam/{id}")
     public String deleteTeam(@PathVariable("id") Long id, Model model){
         teamService.findById(id);
         teamService.deleteById(id);

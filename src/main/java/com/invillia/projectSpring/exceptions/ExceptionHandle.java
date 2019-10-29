@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @ControllerAdvice
-public class TeamExceptionHandle {
+public class ExceptionHandle {
 
-    @ExceptionHandler(TeamNotFoundException.class)
+    @ExceptionHandler(NotFoundException.class)
     public void handleNotFound(HttpServletResponse response, Exception e) throws IOException{
         response.sendError(HttpStatus.NOT_FOUND.value(), e.getMessage());
     }
