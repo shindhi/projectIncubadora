@@ -1,0 +1,42 @@
+
+body{
+    background-color: #dddddd;
+    color: rgba(0, 0, 0, 1);
+    font-family: Arial, sans-serif;
+    text-align: center;
+
+}
+
+table{
+    border-collapse: ;
+    background:#FFFFF0;
+    border: solid black 3px;
+ }
+ 
+ div{
+     width: 1000px;
+     margin: 0 auto;
+ }
+
+p{
+    text-align: justify;
+    text-indent: 50px;
+}
+
+h1{
+    text-align: justify;
+    text-indent: 200px;
+}
+
+.btn{
+    display: inline;
+    box-shadow: rgba(0, 0, 0, 1);
+    border-radius: 30px;
+    border: 0;
+    background: rgba(0, 0, 0, 1);
+    padding: 10px 30px;
+}
+
+
+
+
