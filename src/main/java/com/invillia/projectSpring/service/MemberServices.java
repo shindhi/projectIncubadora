@@ -45,6 +45,10 @@ public class MemberServices {
     @Transactional
     public Member findById(Long id){
         return memberRepository.findById(id).orElseThrow(() -> new ActionNotPermitedException(String.valueOf(id)));
+    }
 
+    @Transactional(readOnly = true)
+    public List<Member> findAllMembersByIdTeam(Long id) {
+        return memberRepository.findAllMembersByIdTeam(id);
     }
 }

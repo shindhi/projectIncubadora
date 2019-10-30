@@ -2,10 +2,10 @@ package com.invillia.projectSpring.controller;
 
 import com.invillia.projectSpring.domain.Team;
 import com.invillia.projectSpring.exceptions.ActionNotPermitedException;
+import com.invillia.projectSpring.service.MemberServices;
 import com.invillia.projectSpring.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,17 +22,19 @@ import java.io.IOException;
 public class TeamController {
 
     private final TeamService teamService;
+    private final MemberServices memberServices;
 
     @Autowired
-    public TeamController(TeamService teamService) {
+    public TeamController(TeamService teamService, MemberServices memberServices) {
         this.teamService = teamService;
+        this.memberServices = memberServices;
     }
 
 
     @GetMapping("/team")
     public String index(Model model){
         model.addAttribute("teams", teamService.findAll());
-        return "index";
+        return "Team/index";
     }
 
     @GetMapping("/signupteam")
@@ -74,6 +76,20 @@ public class TeamController {
         model.addAttribute("teams", teamService.findAll());
         return "index";
     }
+
+
+    @GetMapping("/listmembers/{id}")
+    public String listMembers(@PathVariable("id") Long id, @Valid Team team, BindingResult result, Model model){
+        if(result.hasErrors()){
+            team.setId(id);
+            return "Team/ListMembers";
+        }
+        model.addAttribute("members", memberServices.findAllMembersByIdTeam(id));
+        model.addAttribute("teams", teamService.findById(id));
+
+        return "Team/ListMember";
+    }
+
 
     @ExceptionHandler(ActionNotPermitedException.class)
     public void exceptionHandler(HttpServletResponse response, Exception e) throws IOException {

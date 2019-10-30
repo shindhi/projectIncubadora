@@ -5,6 +5,7 @@ import com.invillia.projectSpring.domain.Team;
 import com.invillia.projectSpring.exceptions.ActionNotPermitedException;
 
 import com.invillia.projectSpring.service.MemberServices;
+import com.invillia.projectSpring.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -22,20 +23,23 @@ import java.io.IOException;
 @Controller
 public class MemberController {
     private final MemberServices memberServices;
+    private final TeamService teamService;
 
     @Autowired
-    public MemberController(MemberServices memberServices) {
+    public MemberController(MemberServices memberServices, TeamService teamService) {
         this.memberServices = memberServices;
+        this.teamService = teamService;
     }
 
     @GetMapping("/member")
     public String index(Model model){
         model.addAttribute("members", memberServices.findAll());
-        return "index";
+        return "Member/index";
     }
 
     @GetMapping("/signupmember")
-    public String showSignUpform(Member member){
+    public String showSignUpform(Member member, Model model){
+        model.addAttribute("teams", teamService.findAll());
         return "Member/RegisterMember";
     }
 
@@ -44,11 +48,13 @@ public class MemberController {
         if(result.hasErrors()){
             return "Member/RegisterMember";
         }
+
         memberServices.insert(member);
         model.addAttribute("members", memberServices.findAll());
+
         return "index";
     }
-    @GetMapping("/editmember{id}")
+    @GetMapping("/editmember/{id}")
     public String showUpdateForm(@PathVariable("id") Long id, Model model){
         Member member = memberServices.findById(id);
         model.addAttribute("member", member);

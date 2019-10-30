@@ -17,9 +17,17 @@
 <div th:switch="${team}" class="container my-5">
     <div class="row">
         <div class="col-md-8">
-            <form action="#" th:action="@{/addmember}" th:object="${member}"  th:object="${team_id}" method="post">
-                <input type="text" class="form-class" th:field="*{name}" th:field="*{team_id}" />
-                <input type="submit" class="btn btn-success" value="Register">
+            <form action="#" th:action="@{/addmember}" th:object="${member}" method="post">
+                <input type="text" class="form-class" th:field="*{name}" />
+
+                <select th:field="*{team}">
+                    <option value="">Selecione um time</option>
+                    <option th:each="team : ${teams}" th:value="${team.id}" th:text="${team.name}">
+                    </option>
+                </select>
+
+                <input type="submit" class="btn btn-success" value="Register" />
+
             </form>
 
         </div>

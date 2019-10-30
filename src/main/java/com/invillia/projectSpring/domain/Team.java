@@ -18,7 +18,7 @@ public class Team {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "team")
+    @OneToMany(mappedBy = "team", cascade = CascadeType.REMOVE)
     private List<Member> members;
 
     @CreationTimestamp
@@ -40,6 +40,7 @@ public class Team {
         return new StringJoiner(", ", Team.class.getSimpleName() + "[", "]")
                 .add("id=" + id)
                 .add("name='" + name + "'")
+                .add("members=" + members)
                 .add("createdAt=" + createdAt)
                 .add("updatedAt=" + updatedAt)
                 .toString();
@@ -59,6 +60,14 @@ public class Team {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Member> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<Member> members) {
+        this.members = members;
     }
 
     public LocalDateTime getCreatedAt() {
