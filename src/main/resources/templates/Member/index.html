@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Title</title>
-    </head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment/header :: header"></head>
     <body>
         <div class="container">
             <a href="">Insert</a>
             <a href="">Update</a>
             <a href="">Delete</a>
         </div>
+
+        <th:block th:replace="fragment/scripts :: script"/>
     </body>
 </html>
