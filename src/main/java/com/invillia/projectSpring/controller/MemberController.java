@@ -50,9 +50,8 @@ public class MemberController {
         }
 
         memberServices.insert(member);
-        model.addAttribute("members", memberServices.findAll());
 
-        return "index";
+        return "redirect:/member";
     }
     @GetMapping("/editmember/{id}")
     public String showUpdateForm(@PathVariable("id") Long id, Model model){
@@ -68,16 +67,16 @@ public class MemberController {
             return "Member/UpdateMember";
         }
         memberServices.update(member);
-        model.addAttribute("teams", memberServices.findAll());
-        return "index";
+
+        return "redirect:/member";
     }
 
     @GetMapping("/deletemember/{id}")
     public String deleteMember(@PathVariable("id") Long id, Model model){
         memberServices.findById(id);
         memberServices.deleteById(id);
-        model.addAttribute("teams", memberServices.findAll());
-        return "index";
+
+        return "redirect:/member";
     }
 
     @ExceptionHandler(ActionNotPermitedException.class)

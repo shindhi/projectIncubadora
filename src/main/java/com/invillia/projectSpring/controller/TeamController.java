@@ -48,8 +48,8 @@ public class TeamController {
             return "Team/RegisterTeam";
         }
         teamService.insert(team);
-        model.addAttribute("teams", teamService.findAll());
-        return "index";
+
+        return "redirect:/team";
     }
 
     @GetMapping("/editteam/{id}")
@@ -66,16 +66,14 @@ public class TeamController {
             return "Team/UpdateTeam";
         }
         teamService.update(team);
-        model.addAttribute("teams", teamService.findAll());
-        return "index";
+        return "redirect:/team";
     }
 
     @GetMapping("/deleteteam/{id}")
     public String deleteTeam(@PathVariable Long id, Model model) {
         teamService.findById(id);
         teamService.deleteById(id);
-        model.addAttribute("teams", teamService.findAll());
-        return "index";
+        return "redirect:/team";
     }
 
 
