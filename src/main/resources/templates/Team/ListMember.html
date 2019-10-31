@@ -15,7 +15,6 @@
     <table class="table">
              <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Name</th>
                     <th>Update</th>
                     <th>Delete</th>
@@ -24,7 +23,6 @@
                 <tbody>
                     <th:block th:each="member : ${members}">
                         <tr>
-                            <td th:text="${team.id}"></td>
                             <td th:text="${member.name}"></td>
                             <td>
                                 <a th:href="@{/editmember/{id}(id=${member.id})}" class="btn btn-primary">
@@ -40,9 +38,6 @@
                     </th:block>
                 </tbody>
             </table>
-            <div style="text-align:right">
-                 <a th:href="@{/signupmember}" class="btn btn-success"> Insert</a>
-            </div>
          </div>
     </body>
 </html>

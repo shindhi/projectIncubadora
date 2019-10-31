@@ -32,35 +32,36 @@ public class TeamController {
 
 
     @GetMapping("/team")
-    public String index(Model model){
+    public String index(Model model) {
         model.addAttribute("teams", teamService.findAll());
         return "Team/index";
     }
 
     @GetMapping("/signupteam")
-    public String showSignUpform(Team team){
+    public String showSignUpform(Team team) {
         return "Team/RegisterTeam";
     }
 
     @PostMapping("/addteam")
-    public String addMember(@Valid Team team, BindingResult result, Model model){
-        if(result.hasErrors()){
+    public String addMember(@Valid Team team, BindingResult result, Model model) {
+        if (result.hasErrors()) {
             return "Team/RegisterTeam";
         }
         teamService.insert(team);
         model.addAttribute("teams", teamService.findAll());
         return "index";
     }
+
     @GetMapping("/editteam/{id}")
-    public String showUpdateForm(@PathVariable("id") Long id, Model model){
+    public String showUpdateForm(@PathVariable Long id, Model model) {
         Team team = teamService.findById(id);
         model.addAttribute("team", team);
         return "Team/UpdateTeam";
     }
 
     @PostMapping("/updateteam/{id}")
-    public String updateTeam(@PathVariable("id") Long id, @Valid Team team, BindingResult result, Model model){
-        if(result.hasErrors()){
+    public String updateTeam(@PathVariable Long id, @Valid Team team, BindingResult result, Model model) {
+        if (result.hasErrors()) {
             team.setId(id);
             return "Team/UpdateTeam";
         }
@@ -70,7 +71,7 @@ public class TeamController {
     }
 
     @GetMapping("/deleteteam/{id}")
-    public String deleteTeam(@PathVariable("id") Long id, Model model){
+    public String deleteTeam(@PathVariable Long id, Model model) {
         teamService.findById(id);
         teamService.deleteById(id);
         model.addAttribute("teams", teamService.findAll());
@@ -79,11 +80,8 @@ public class TeamController {
 
 
     @GetMapping("/listmembers/{id}")
-    public String listMembers(@PathVariable("id") Long id, @Valid Team team, BindingResult result, Model model){
-        if(result.hasErrors()){
-            team.setId(id);
-            return "Team/ListMembers";
-        }
+    public String listMembers(@PathVariable Long id, Model model) {
+
         model.addAttribute("members", memberServices.findAllMembersByIdTeam(id));
         model.addAttribute("teams", teamService.findById(id));
 

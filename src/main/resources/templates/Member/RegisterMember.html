@@ -19,7 +19,7 @@
         <div class="col-md-8">
             <form action="#" th:action="@{/addmember}" th:object="${member}" method="post">
                 <input type="text" class="form-class" th:field="*{name}" />
-
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
                 <select th:field="*{team}">
                     <option value="">Selecione um time</option>
                     <option th:each="team : ${teams}" th:value="${team.id}" th:text="${team.name}">
