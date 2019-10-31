@@ -1,0 +1,69 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:fragment="layout">
+<body>
+<div th:switch="${team}" class="container-flex">
+
+    <div class="sidebar">
+
+        <!-- Logo -->
+        <div class="logo">
+            <img th:src="@{/img/dragonBall.png}" alt="">
+        </div>
+
+        <div class="content">
+            <ul>
+                <li>
+                    <a
+                            id="team"
+                            data-toggle="collapse"
+                            href="#collapseTeam"
+                            role="button"
+                    >
+                        <i class="fas fa-user-friends"></i>
+                        Team
+                    </a>
+                    <ul
+                            class="collapse"
+                            id="collapseTeam"
+                    >
+                        <li>
+                            <i class="fas fa-plus"></i>
+                            <a th:href="@{/signupteam}">Add</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-list"></i>
+                            <a th:href="@{/team}">List</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a
+                            id="member"
+                            data-toggle="collapse"
+                            href="#collapseMember"
+                            role="button"
+                    >
+                        <i class="fas fa-user"></i>
+                        Member
+                    </a>
+                    <ul
+                            class="collapse"
+                            id="collapseMember"
+                    >
+                        <li>
+                            <i class="fas fa-plus"></i>
+                            <a th:href="@{/signupmember}">Add</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-list"></i>
+                            <a th:href="@{/member}">List</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>

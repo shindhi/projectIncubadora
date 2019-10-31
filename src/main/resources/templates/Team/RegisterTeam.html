@@ -1,7 +1,7 @@
 <!DOCTYPE html >
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragment/header :: header"></head>
-<body>
+<body th:replace="fragment/layout" :: layout></body>
 <div th:switch="${team}" class="container my-5">
     <div class="row">
         <div class="col-md-8">
