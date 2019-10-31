@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragment/header :: header"></head>
 <body>
-<div th:switch="${team}" class="container my-5">
+<div th:switch="${member}" class="container my-5">
     <div class="row">
         <div class="col-md-8">
             <form action="#" th:action="@{/addmember}" th:object="${member}" method="post">
@@ -20,7 +20,6 @@
         </div>
     </div>
 </div>
-
 <th:block th:replace="fragment/scripts :: script"/>
 </body>
 </html>

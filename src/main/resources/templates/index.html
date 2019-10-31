@@ -30,7 +30,7 @@
                             >
                                 <li>
                                     <i class="fas fa-plus"></i>
-                                    <a href="">Add</a>
+                                    <a th:href="@{/signupteam}">Add</a>
                                 </li>
                                 <li>
                                     <i class="fas fa-list"></i>
@@ -53,17 +53,19 @@
                                 class="collapse"
                                 id="collapseMember"
                             >
-                                <li>Add</li>
                                 <li>
+                                    <i class="fas fa-plus"></i>
+                                    <a th:href="@{/signupmember}">Add</a>
+                                </li>
+                                <li>
+                                    <i class="fas fa-list"></i>
                                     <a th:href="@{/member}">List</a>
                                 </li>
                             </ul>
                         </li>
                     </ul>
                 </div>
-
             </div>
-
         </div>
 
         <th:block th:replace="fragment/scripts :: script"/>
