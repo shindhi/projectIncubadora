@@ -4,6 +4,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.util.StringJoiner;
 
@@ -15,6 +16,7 @@ public class Member {
     private Long id;
 
     @Column(nullable = false)
+    @NotBlank(message = "Campo obrigatório!")
     private String name;
 
     @ManyToOne
