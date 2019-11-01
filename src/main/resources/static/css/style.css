@@ -18,7 +18,7 @@
     padding-top: 20px;
 }
 
-.sidebar > .logo {
+.sidebar > .logo a {
     display: flex;
     flex: 1;
     justify-content: center;
