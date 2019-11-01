@@ -32,7 +32,6 @@ public class TeamController {
         this.memberServices = memberServices;
     }
 
-
     @GetMapping("/team")
     public String index(Model model) {
         model.addAttribute("teams", teamService.findAll());
@@ -51,7 +50,7 @@ public class TeamController {
         }
         teamService.insert(team);
 
-        return "redirect:/member";
+        return "redirect:/team";
     }
 
     @GetMapping("/editteam/{id}")
@@ -68,16 +67,15 @@ public class TeamController {
             return "Team/UpdateTeam";
         }
         teamService.update(team);
-        return "redirect:/member";
+        return "redirect:/team";
     }
 
     @GetMapping("/deleteteam/{id}")
     public String deleteTeam(@PathVariable Long id, Model model) {
         teamService.findById(id);
         teamService.deleteById(id);
-        return "redirect:/member";
+        return "redirect:/team";
     }
-
 
     @GetMapping("/listmembers/{id}")
     public String listMembers(@PathVariable Long id, Model model) {
@@ -101,7 +99,7 @@ public class TeamController {
             return "Team/InsertMemberTeam";
         }
         memberServices.insert(member);
-        return "redirect:/member";
+        return "redirect:/team";
     }
 
     @ExceptionHandler(ActionNotPermitedException.class)

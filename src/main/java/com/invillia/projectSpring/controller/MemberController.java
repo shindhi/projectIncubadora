@@ -69,7 +69,7 @@ public class MemberController {
         }
         memberServices.update(member);
 
-        return "redirect:/team";
+        return "redirect:/member";
     }
 
     @GetMapping("/deletemember/{id}")
@@ -77,7 +77,7 @@ public class MemberController {
         memberServices.findById(id);
         memberServices.deleteById(id);
 
-        return "redirect:/team";
+        return "redirect:/member";
     }
 
 
