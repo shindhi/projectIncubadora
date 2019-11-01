@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragment/header :: header"></head>
-<body th:replace="fragment/layout"></body>
+    <head th:replace="fragment/header :: header"></head>
+    <body>
+        <div class="container-flex">
+            <div th:replace="fragment/layout"></div>
 
-    <div class="container">
-    <table class="table">
-             <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Update</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-                <tbody>
+            <div class="content-area">
+                <table class="table table-striped">
+                    <thead>
+                    <tr class="bg-primary">
+                        <th class="title">ID</th>
+                        <th class="title">Name</th>
+                        <th class="title">Options</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     <th:block th:each="member : ${members}">
 
                         <tr>
@@ -20,22 +22,23 @@
                             <td th:text="${member.name}"></td>
                             <td>
                                 <a th:href="@{/editmember/{id}(id=${member.id})}" class="btn btn-primary">
-                                    <i class="fas fa-team-edit"></i> Update
+                                    <i class="fas fa-edit"></i> Edit
                                 </a>
-                            </td>
-                            <td>
                                 <a th:href="@{/deletemember/{id}(id=${member.id})}" class="btn btn-primary">
-                                    <i class="fas fa-teams"></i> Delete
+                                    <i class="fas fa-trash-alt"></i> Delete
                                 </a>
                             </td>
                         </tr>
                     </th:block>
-                </tbody>
-            </table>
-        <div style="text-align:right">
-            <a th:href="@{/signupmemberteam/{id}(id=${teams.id})}" class="btn btn-success" > Insert</a>
+                    </tbody>
+                </table>
+                <div style="text-align:right">
+                    <a th:href="@{/signupmemberteam/{id}(id=${teams.id})}" class="btn btn-success" >
+                        <i class="fas fa-plus-circle"></i> Insert
+                    </a>
+                </div>
+            </div>
         </div>
-         </div>
         <th:block th:replace="fragment/scripts :: script"/>
     </body>
 </html>
