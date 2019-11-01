@@ -1,5 +1,6 @@
 package com.invillia.projectSpring.controller;
 
+import com.invillia.projectSpring.domain.Member;
 import com.invillia.projectSpring.domain.Team;
 import com.invillia.projectSpring.exceptions.ActionNotPermitedException;
 import com.invillia.projectSpring.service.MemberServices;
@@ -84,6 +85,22 @@ public class TeamController {
         model.addAttribute("teams", teamService.findById(id));
 
         return "Team/ListMember";
+    }
+
+    @GetMapping("/signupmemberteam/{id}")
+    public String showSignUpformMemberTeam(@PathVariable Long id, Model model) {
+        model.addAttribute("members", memberServices.findAllMembersByIdTeam(id));
+        model.addAttribute("team", teamService.findById(id).getId());
+        return "Team/InsertMemberTeam";
+    }
+
+    @PostMapping("/addmemberteam/{id}")
+    public String addMemberTeam(@Valid Member member, Model model, BindingResult result) {
+        if(result.hasErrors()){
+            return "Team/InsertMemberTeam";
+        }
+        memberServices.insert(member);
+        return "redirect:/team";
     }
 
 

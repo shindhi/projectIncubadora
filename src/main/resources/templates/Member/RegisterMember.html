@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragment/header :: header"></head>
-<body th:replace="fragment/layout" :: layout></body>
+<body th:replace="fragment/layout"></body>
 <div th:switch="${member}" class="container my-5">
-    <div class="row">
+    <div  class="row">
         <div class="col-md-8">
             <form action="#" th:action="@{/addmember}" th:object="${member}" method="post">
                 <input type="text" class="form-class" th:field="*{name}" />

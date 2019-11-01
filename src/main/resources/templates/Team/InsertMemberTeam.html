@@ -5,7 +5,7 @@
 <div th:switch="${team}" class="container my-5">
     <div class="row">
         <div class="col-md-8">
-            <form action="#" th:action="@{/addteam}" th:object="${team}" method="post">
+            <form action="#" th:action="@{/addmemberteam/{id}}" th:object="${member}" method="post">
                 <input type="text" class="form-class" th:field="*{name}" />
                 <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
                 <input type="submit" class="btn btn-success" value="Register">

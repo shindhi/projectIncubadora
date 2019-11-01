@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="fragment/header :: header"></head>
-    <body th:replace="fragment/layout" :: layout></body>
+    <body th:replace="fragment/layout"></body>
 
         <div class="container">
             <table class="table table-hover">
@@ -39,7 +39,7 @@
                 </tbody>
             </table>
             <div style="text-align:right">
-                <a th:href="@{/signupmember}" class="btn btn-success" > Insert</a>
+                <a th:href="@{/signupteam}" class="btn btn-success" > Insert</a>
             </div>
         </div>
         <th:block th:replace="fragment/scripts :: script"/>

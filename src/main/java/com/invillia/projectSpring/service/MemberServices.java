@@ -37,12 +37,13 @@ public class MemberServices {
         memberRepository.deleteById(id);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<Member> findAll(){
         return memberRepository.findAll();
     }
 
-    @Transactional
+
+    @Transactional(readOnly = true)
     public Member findById(Long id){
         return memberRepository.findById(id).orElseThrow(() -> new ActionNotPermitedException(String.valueOf(id)));
     }
