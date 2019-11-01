@@ -10,7 +10,7 @@
     display: flex;
 }
 
-/* Side Bar */
+/*---------- Side Bar ----------*/
 .sidebar {
     width: 250px;
     background-color: #007bff;
@@ -53,4 +53,37 @@ i {
     font-size: 16px;
 }
 
+/*---------- content-area ----------*/
+.content-area {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 80px 20px 50px 20px;
+}
 
+th.title {
+    color: white;
+}
+
+table {
+    text-align: center;
+}
+
+/*---------- content-form ----------*/
+.content-form {
+    width: 100%;
+    border-radius: 4px;
+}
+
+.content-form > form {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    width: 400px;
+    flex-direction: column;
+}
+
+div.form-group > select {
+    border: none;
+    padding: 5px;
+}

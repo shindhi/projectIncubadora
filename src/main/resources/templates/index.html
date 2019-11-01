@@ -1,7 +1,11 @@
 <!DOCTYPE html >
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <head th:replace="fragment/header :: header"></head>
-    <body th:replace="fragment/layout"></body>
+    <body>
+        <div class="container-flex">
+            <div th:replace="fragment/layout"></div>
+        </div>
 
         <th:block th:replace="fragment/scripts :: script"/>
+    </body>
 </html>

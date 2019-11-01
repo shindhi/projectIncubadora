@@ -1,25 +1,37 @@
 <!DOCTYPE html >
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragment/header :: header"></head>
-<body th:replace="fragment/layout"></body>
-<div th:switch="${member}" class="container my-5">
-    <div  class="row">
-        <div class="col-md-8">
-            <form action="#" th:action="@{/addmember}" th:object="${member}" method="post">
-                <input type="text" class="form-class" th:field="*{name}" />
-                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
-                <select th:field="*{team}" required>
-                    <option value="">Selecione um time</option>
-                    <option th:each="team : ${teams}" th:value="${team.id}" th:text="${team.name}">
-                    </option>
-                </select>
-                <input type="submit" class="btn btn-success" value="Register" />
+    <head th:replace="fragment/header :: header"></head>
+    <body>
+        <div th:switch="${member}">
+            <div class="container-flex">
+                <div th:replace="fragment/layout"></div>
+                <div class="content-area">
+                    <div class="content-form">
+                        <h2>Register Member</h2>
+                        <br />
+                        <form action="#" th:action="@{/addmember}" th:object="${member}" method="post">
+                            <div class="form-group">
+                                <label for="inputName">Name member</label>
+                                <input type="text" class="form-control" id="inputName" placeholder="Name" th:field="*{name}">
+                                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+                            </div>
 
-            </form>
+                            <div class="form-group">
+                                <label for="selectTeam">Team member: </label>
+                                <select th:field="*{team}" required id="selectTeam">
+                                    <option value="none">Selecione um time</option>
+                                    <th:block th:each="team : ${teams}">
+                                        <option th:value="${team.id}" th:text="${team.name}"></option>
+                                    </th:block>
+                                </select>
+                            </div>
 
+                            <input type="submit" class="btn btn-success" value="Register" />
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-<th:block th:replace="fragment/scripts :: script"/>
-</body>
+        <th:block th:replace="fragment/scripts :: script"/>
+    </body>
 </html>

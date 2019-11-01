@@ -1,20 +1,29 @@
 <!DOCTYPE html >
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragment/header :: header"></head>
-<body th:replace="fragment/layout"></body>
-<div th:switch="${team}" class="container my-5">
-    <div class="row">
-        <div class="col-md-8">
-            <form action="#" th:action="@{/addteam}" th:object="${team}" method="post">
-                <input type="text" class="form-class" th:field="*{name}" />
-                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
-                <input type="submit" class="btn btn-success" value="Register">
-            </form>
+    <head th:replace="fragment/header :: header"></head>
+    <body>
 
+    <div th:switch="${team}" class="container-flex">
+        <div  th:replace="fragment/layout"></div>
+
+        <div class="content-area">
+            <div class="content-form">
+                <h2>Register Team</h2>
+                <br />
+                <form action="#" th:action="@{/addteam}" th:object="${team}" method="post">
+                    <div class="form-group">
+                        <label for="inputName">Name team</label>
+                        <input type="text" class="form-control" id="inputName" placeholder="Name" th:field="*{name}">
+                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+                    </div>
+
+                    <input type="submit" class="btn btn-success" value="Register" />
+                </form>
+            </div>
         </div>
-    </div>
-</div>
 
-<th:block th:replace="fragment/scripts :: script"/>
-</body>
+    </div>
+
+    <th:block th:replace="fragment/scripts :: script"/>
+    </body>
 </html>

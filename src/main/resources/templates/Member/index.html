@@ -1,39 +1,43 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragment/header :: header"></head>
-    <body th:replace="fragment/layout"></body>
-        <div class="container">
-                <table class="table">
+    <head th:replace="fragment/header :: header"></head>
+    <body>
+
+        <div th:switch="${team}" class="container-flex">
+            <div th:replace="fragment/layout"></div>
+
+            <div class="content-area">
+                <table class="table table-striped">
                     <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Update</th>
-                        <th>Delete</th>
-                    </tr>
+                        <tr class="bg-primary">
+                            <th class="title">ID</th>
+                            <th class="title">Name</th>
+                            <th class="title">Options</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <th:block th:each="member : ${members}">
-                        <tr>
-                            <td th:text="${member.id}"></td>
-                            <td th:text="${member.name}"></td>
-                            <td>
-                                <a th:href="@{/editmember/{id}(id=${member.id})}" class="btn btn-primary">
-                                    <i class="fas fa-team-edit"></i> Edit
-                                </a>
-                            </td>
-                            <td>
-                                <a th:href="@{/deletemember/{id}(id=${member.id})}" class="btn btn-primary">
-                                    <i class="fas fa-teams"></i> Delete
-                                </a>
-                            </td>
-                        </tr>
-                    </th:block>
+                        <th:block th:each="member : ${members}">
+                            <tr>
+                                <td th:text="${member.id}"></td>
+                                <td th:text="${member.name}"></td>
+                                <td>
+                                    <a th:href="@{/editmember/{id}(id=${member.id})}" class="btn btn-primary">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                    <a th:href="@{/deletemember/{id}(id=${member.id})}" class="btn btn-primary">
+                                        <i class="fas fa-trash-alt"></i> Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        </th:block>
                     </tbody>
                 </table>
                 <div style="text-align:right">
-                    <a th:href="@{/signupmember}" class="btn btn-success" > Insert</a>
+                    <a th:href="@{/signupmember}" class="btn btn-success" >
+                        <i class="fas fa-plus-circle"></i> Insert
+                    </a>
                 </div>
+            </div>
         </div>
         <th:block th:replace="fragment/scripts :: script"/>
     </body>

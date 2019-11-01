@@ -1,9 +1,6 @@
 <!DOCTYPE html >
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head th:fragment="layout">
-<body>
-<div th:switch="${team}" class="container-flex">
-
+<th:block th:fragment="layout">
     <div class="sidebar">
 
         <!-- Logo -->
@@ -15,17 +12,17 @@
             <ul>
                 <li>
                     <a
-                            id="team"
-                            data-toggle="collapse"
-                            href="#collapseTeam"
-                            role="button"
+                        id="team"
+                        data-toggle="collapse"
+                        href="#collapseTeam"
+                        role="button"
                     >
                         <i class="fas fa-user-friends"></i>
                         Team
                     </a>
                     <ul
-                            class="collapse"
-                            id="collapseTeam"
+                        class="collapse"
+                        id="collapseTeam"
                     >
                         <li>
                             <i class="fas fa-plus"></i>
@@ -40,17 +37,17 @@
 
                 <li>
                     <a
-                            id="member"
-                            data-toggle="collapse"
-                            href="#collapseMember"
-                            role="button"
+                        id="member"
+                        data-toggle="collapse"
+                        href="#collapseMember"
+                        role="button"
                     >
                         <i class="fas fa-user"></i>
                         Member
                     </a>
                     <ul
-                            class="collapse"
-                            id="collapseMember"
+                        class="collapse"
+                        id="collapseMember"
                     >
                         <li>
                             <i class="fas fa-plus"></i>
@@ -65,5 +62,4 @@
             </ul>
         </div>
     </div>
-</div>
-</body>
+</th:block>
