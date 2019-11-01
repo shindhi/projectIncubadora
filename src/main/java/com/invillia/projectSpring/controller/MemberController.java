@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.*;
 import javax.validation.Valid;
 import java.io.IOException;
 
@@ -68,7 +69,7 @@ public class MemberController {
         }
         memberServices.update(member);
 
-        return "redirect:/member";
+        return "redirect:/team";
     }
 
     @GetMapping("/deletemember/{id}")
@@ -76,8 +77,9 @@ public class MemberController {
         memberServices.findById(id);
         memberServices.deleteById(id);
 
-        return "redirect:/member";
+        return "redirect:/team";
     }
+
 
     @ExceptionHandler(ActionNotPermitedException.class)
     public void exceptionHandler(HttpServletResponse response, Exception e) throws IOException {

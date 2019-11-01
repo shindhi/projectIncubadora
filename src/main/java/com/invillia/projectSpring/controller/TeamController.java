@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @Controller
 public class TeamController {
@@ -50,7 +51,7 @@ public class TeamController {
         }
         teamService.insert(team);
 
-        return "redirect:/team";
+        return "redirect:/member";
     }
 
     @GetMapping("/editteam/{id}")
@@ -67,14 +68,14 @@ public class TeamController {
             return "Team/UpdateTeam";
         }
         teamService.update(team);
-        return "redirect:/team";
+        return "redirect:/member";
     }
 
     @GetMapping("/deleteteam/{id}")
     public String deleteTeam(@PathVariable Long id, Model model) {
         teamService.findById(id);
         teamService.deleteById(id);
-        return "redirect:/team";
+        return "redirect:/member";
     }
 
 
@@ -86,23 +87,22 @@ public class TeamController {
 
         return "Team/ListMember";
     }
-
     @GetMapping("/signupmemberteam/{id}")
-    public String showSignUpformMemberTeam(@PathVariable Long id, Model model) {
-        model.addAttribute("members", memberServices.findAllMembersByIdTeam(id));
-        model.addAttribute("team", teamService.findById(id).getId());
+    public String showSignUpformMemberTeam(@PathVariable ("id") Long id, Model model, Member member) {
+
+        model.addAttribute("teams", teamService.findById(id));
+
         return "Team/InsertMemberTeam";
     }
 
-    @PostMapping("/addmemberteam/{id}")
+    @PostMapping("/addmemberteam")
     public String addMemberTeam(@Valid Member member, Model model, BindingResult result) {
         if(result.hasErrors()){
             return "Team/InsertMemberTeam";
         }
         memberServices.insert(member);
-        return "redirect:/team";
+        return "redirect:/member";
     }
-
 
     @ExceptionHandler(ActionNotPermitedException.class)
     public void exceptionHandler(HttpServletResponse response, Exception e) throws IOException {

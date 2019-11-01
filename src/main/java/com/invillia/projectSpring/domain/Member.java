@@ -38,12 +38,17 @@ public class Member {
         this.team = team;
     }
 
+    public Member(Long id, @NotBlank(message = "Campo obrigatório!") String name, Team team) {
+        this.id = id;
+        this.name = name;
+        this.team = team;
+    }
+
     @Override
     public String toString() {
         return new StringJoiner(", ", Member.class.getSimpleName() + "[", "]")
                 .add("id=" + id)
                 .add("name='" + name + "'")
-                .add("team=" + team)
                 .add("createdAt=" + createdAt)
                 .add("updatedAt=" + updatedAt)
                 .toString();

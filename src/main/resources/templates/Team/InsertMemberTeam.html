@@ -1,16 +1,25 @@
-<!DOCTYPE html >
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragment/header :: header"></head>
 <body th:replace="fragment/layout"></body>
-<div th:switch="${team}" class="container my-5">
+<div class="container my-5">
+    <h2 class="mb-5">Insert Member</h2>
     <div class="row">
-        <div class="col-md-8">
-            <form action="#" th:action="@{/addmemberteam/{id}}" th:object="${member}" method="post">
-                <input type="text" class="form-class" th:field="*{name}" />
-                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
-                <input type="submit" class="btn btn-success" value="Register">
+        <div class="col-md-6">
+            <form action="#" th:action="@{/addmemberteam}" th:object="${member}" method="post">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name">
+                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+                        <input type="hidden" th:value="${teams.id}" name="team">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="submit" class="btn btn-success" value="Confirm">
+                    </div>
+                </div>
             </form>
-
         </div>
     </div>
 </div>
