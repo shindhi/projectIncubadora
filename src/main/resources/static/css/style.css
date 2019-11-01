@@ -87,3 +87,17 @@ div.form-group > select {
     border: none;
     padding: 5px;
 }
+
+/*---------- error ----------*/
+.error-box {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-box img {
+    width: 400px;
+    height: auto;
+}

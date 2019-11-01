@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragment/header :: header"></head>
-<body>
-<div class="container my-5">
-    <div class="row">
-        <div class="col-md-6">
-            <a th:href="@{/}" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a>
+    <head th:replace="fragment/header :: header">
+        <title th:text="${status} + ' - ' + ${error}"></title>
+    </head>
+    <body>
+        <div class="container-flex">
+            <div class="error-box">
+                <img th:src="@{/img/error.png}" alt="Error">
+                <div class="error-code" th:text="${status}"></div>
+                <div class="error" th:text="${message}"></div>
+                <div class="error-back"><a th:href="@{/}">Home</a></div>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="alert alert-danger mt-5" role="alert">
-            <span th:text="${message}"></span>
-        </div>
-    </div>
-</div>
-
-<th:block th:replace="fragment/scripts :: script"/>
-</body>
+        <th:block th:replace="fragment/scripts :: script"/>
+    </body>
 </html>
